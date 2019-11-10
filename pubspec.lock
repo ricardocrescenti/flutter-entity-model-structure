@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.11"
+  datetime_picker_formfield:
+    dependency: transitive
+    description:
+      name: datetime_picker_formfield
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -39,6 +46,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.5.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.15.8"
   matcher:
     dependency: transitive
     description:
@@ -74,6 +95,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  simple_form:
+    dependency: "direct main"
+    description:
+      path: "D:\\Projetos\\CrescentiApps\\Flutter-Packages\\flutter-simple-form"
+      relative: false
+    source: path
+    version: "0.1.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -128,6 +156,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  useful_widgets:
+    dependency: "direct main"
+    description:
+      path: "D:\\Projetos\\CrescentiApps\\Flutter-Packages\\flutter-useful-widgets"
+      relative: false
+    source: path
+    version: "1.0.0+1"
   vector_math:
     dependency: transitive
     description:
@@ -137,3 +172,4 @@ packages:
     version: "2.0.8"
 sdks:
   dart: ">=2.2.2 <3.0.0"
+  flutter: ">=1.0.0 <2.0.0"

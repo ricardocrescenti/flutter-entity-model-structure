@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  simple_form:
+    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
+  useful_widgets:
+    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
+  font_awesome_flutter: ^8.5.0
 
 dev_dependencies:
   flutter_test:
