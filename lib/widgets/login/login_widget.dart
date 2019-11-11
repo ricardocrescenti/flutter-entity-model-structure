@@ -147,7 +147,7 @@ class _LoginWidget extends State<LoginWidget> {
         ),
         Padding(
           padding: EdgeInsets.only(bottom: 8),
-          child: Text('Or sign up with'),
+          child: Text('Or sign in with your preferred account'),
         ),
       ];
       widgets.addAll(widget.socialLoginButtons); 

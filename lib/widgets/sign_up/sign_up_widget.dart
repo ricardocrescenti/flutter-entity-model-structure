@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:useful_widgets/widgets/stepper/step_widget.dart';
 import 'package:useful_widgets/widgets/stepper/stepper_widget.dart';
+import 'package:user_structure/user_structure.dart';
 
 class SignUpWidget extends StatefulWidget{
   final Widget title;
   final bool centerTitle;
-  final List<StepWidget> steps;
+  final Widget continueButton;
+  final Widget finalizeButton;
+  final Future<bool> Function(BuildContext context) onFinalize;
+  final List<SignUpStepWidget> steps;  
 
   SignUpWidget({
-    this.title = const Text('Sign Up'),
+    this.title,
     this.centerTitle = false,
+    this.continueButton = const Text('CONTINUE'),
+    this.finalizeButton = const Text('FINALIZE'),
+    this.onFinalize,
     @required this.steps
   });
 
   @override
-  State<StatefulWidget> createState() => _SignUpWidgetState();
+  State<StatefulWidget> createState() => SignUpWidgetState();
 }
 
-class _SignUpWidgetState extends State<SignUpWidget> {
+class SignUpWidgetState extends State<SignUpWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +46,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     return StepperWidget(
       showStepTitle: true,
       centerTitle: widget.centerTitle,
+      continueButton: widget.continueButton,
+      finalizeButton: widget.finalizeButton,
+      onFinalize: widget.onFinalize,
       steps: widget.steps,
     );
   }
