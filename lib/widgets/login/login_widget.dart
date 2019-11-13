@@ -4,6 +4,11 @@ import 'package:simple_form/simple_form.dart';
 class LoginWidget extends StatefulWidget {
   final Widget logo;
   final Widget title;
+  final String userNameFieldText;
+  final String passwordFieldText;
+  final String registerText;
+  final String forgetPasswordText;
+  final String orSignWithText;
   final Future<bool> Function(BuildContext context) onLoginClick;
   final Future<bool> Function(BuildContext context) onForgetPasswordClick;
   final Future<bool> Function(BuildContext context) onRegisterClick;
@@ -13,6 +18,11 @@ class LoginWidget extends StatefulWidget {
   LoginWidget({
     this.logo,
     this.title,
+    this.userNameFieldText = 'Username',
+    this.passwordFieldText = 'Password',
+    this.registerText = 'Register',
+    this.forgetPasswordText = 'Forget your password?',
+    this.orSignWithText = 'Or sign in with your preferred account',
     @required this.onLoginClick,
     this.onForgetPasswordClick,
     this.onRegisterClick,
@@ -92,11 +102,11 @@ class _LoginWidget extends State<LoginWidget> {
             padding: EdgeInsets.only(bottom: 10),
             child: SimpleTextField(
               fieldName: 'username', 
-              title: 'Username', 
+              title: widget.userNameFieldText, 
               textCapitalization: TextCapitalization.none, 
               inputDecoration: InputDecoration(
-                labelText: 'Username',
-                prefixIcon: Icon(Icons.email)
+                labelText: widget.userNameFieldText,
+                prefixIcon: Icon(Icons.person)
               ),
             ),
           ),
@@ -104,11 +114,11 @@ class _LoginWidget extends State<LoginWidget> {
             padding: EdgeInsets.only(bottom: 30),
             child: SimpleTextField(
               fieldName: 'password', 
-              title: 'Password', 
+              title: widget.passwordFieldText, 
               textCapitalization: TextCapitalization.none, 
               obscureText: true,
               inputDecoration: InputDecoration(
-                labelText: 'Password',
+                labelText: widget.passwordFieldText,
                 prefixIcon: Icon(Icons.lock)
               ),
             ),
@@ -122,13 +132,13 @@ class _LoginWidget extends State<LoginWidget> {
             children: <Widget>[
               (widget.onRegisterClick != null 
                 ? FlatButton(
-                  child: Text('Register'),
+                  child: Text(widget.registerText),
                   onPressed: () => widget.onRegisterClick(context),
                 )
                 : null),
               (widget.onForgetPasswordClick != null
                 ? FlatButton(
-                  child: Text('Forget yout password?'),
+                  child: Text(widget.forgetPasswordText),
                   onPressed: () => widget.onForgetPasswordClick(context),
                 )
                 : null)
@@ -147,7 +157,7 @@ class _LoginWidget extends State<LoginWidget> {
         ),
         Padding(
           padding: EdgeInsets.only(bottom: 8),
-          child: Text('Or sign in with your preferred account'),
+          child: Text(widget.orSignWithText),
         ),
       ];
       widgets.addAll(widget.socialLoginButtons); 
