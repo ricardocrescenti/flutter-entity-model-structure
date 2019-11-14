@@ -74,19 +74,13 @@ class _LoginWidget extends State<LoginWidget> {
 
   _buildLogo() {
     if (widget.logo != null) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: 20),
-        child: widget.logo,
-      );
+      return widget.logo;
     }
     return null;
   }
   _buildSubtitle() {
     if (widget.title != null) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: 20),
-        child: widget.title,
-      );
+      return widget.title;
     }
     return null;
   }
@@ -99,7 +93,7 @@ class _LoginWidget extends State<LoginWidget> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(top: 20, bottom: 10),
             child: SimpleTextField(
               fieldName: 'username', 
               title: widget.userNameFieldText, 
