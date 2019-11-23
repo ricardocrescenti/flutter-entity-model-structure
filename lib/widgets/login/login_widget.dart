@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_form/simple_form.dart';
+import 'package:user_structure/localizations/user_structure_localization.dart';
+import 'package:user_structure/user_structure.dart';
 
 class LoginWidget extends StatefulWidget {
   final Widget logo;
@@ -18,11 +20,11 @@ class LoginWidget extends StatefulWidget {
   LoginWidget({
     this.logo,
     this.title,
-    this.userNameFieldText = 'Username',
-    this.passwordFieldText = 'Password',
-    this.registerText = 'Register',
-    this.forgetPasswordText = 'Forget your password?',
-    this.orSignWithText = 'Or sign in with your preferred account',
+    this.userNameFieldText,
+    this.passwordFieldText,
+    this.registerText,
+    this.forgetPasswordText,
+    this.orSignWithText,
     @required this.onLoginClick,
     this.onForgetPasswordClick,
     this.onRegisterClick,
@@ -41,13 +43,21 @@ class _LoginWidget extends State<LoginWidget> {
     'password': ''
   };
 
+  UserStructureLocalization localization;
+  
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    this.localization = UserStructureLocalization.of(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
           _buildBackground(),
-          _buildScreen(),
+          _buildScreen(context),
         ]
       )
     );
@@ -57,16 +67,16 @@ class _LoginWidget extends State<LoginWidget> {
     return Container();
   }
 
-  _buildScreen() {
+  _buildScreen(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
       padding: widget.padding,
       child: Column(
         children: [
           _buildLogo(),
-          _buildSubtitle(),
-          _buildForm(),
-          _buildSocialLoginButtons()
+          _buildTitle(),
+          _buildForm(context),
+          _buildSocialLoginButtons(context)
         ].where((item) => item != null).toList().cast<Widget>(),
       ),
     ));
@@ -78,13 +88,13 @@ class _LoginWidget extends State<LoginWidget> {
     }
     return null;
   }
-  _buildSubtitle() {
+  _buildTitle() {
     if (widget.title != null) {
       return widget.title;
     }
     return null;
   }
-  _buildForm() {
+  _buildForm(BuildContext context) {
     return SimpleForm(
       key: formState,
       initialValues: formValue,
@@ -96,10 +106,10 @@ class _LoginWidget extends State<LoginWidget> {
             padding: EdgeInsets.only(top: 20, bottom: 10),
             child: SimpleTextField(
               fieldName: 'username', 
-              title: widget.userNameFieldText, 
+              title: widget.userNameFieldText ?? localization[LoginWidgetMessages.userNameFieldText], 
               textCapitalization: TextCapitalization.none, 
               inputDecoration: InputDecoration(
-                labelText: widget.userNameFieldText,
+                labelText: widget.userNameFieldText ?? localization[LoginWidgetMessages.userNameFieldText],
                 prefixIcon: Icon(Icons.person)
               ),
             ),
@@ -108,11 +118,11 @@ class _LoginWidget extends State<LoginWidget> {
             padding: EdgeInsets.only(bottom: 30),
             child: SimpleTextField(
               fieldName: 'password', 
-              title: widget.passwordFieldText, 
+              title: widget.passwordFieldText ?? localization[LoginWidgetMessages.passwordFieldText], 
               textCapitalization: TextCapitalization.none, 
               obscureText: true,
               inputDecoration: InputDecoration(
-                labelText: widget.passwordFieldText,
+                labelText: widget.passwordFieldText ?? localization[LoginWidgetMessages.passwordFieldText],
                 prefixIcon: Icon(Icons.lock)
               ),
             ),
@@ -126,13 +136,13 @@ class _LoginWidget extends State<LoginWidget> {
             children: <Widget>[
               (widget.onRegisterClick != null 
                 ? FlatButton(
-                  child: Text(widget.registerText),
+                  child: Text(widget.registerText ?? localization[LoginWidgetMessages.registerText]),
                   onPressed: () => widget.onRegisterClick(context),
                 )
                 : null),
               (widget.onForgetPasswordClick != null
                 ? FlatButton(
-                  child: Text(widget.forgetPasswordText),
+                  child: Text(widget.forgetPasswordText ?? localization[LoginWidgetMessages.forgetPasswordText]),
                   onPressed: () => widget.onForgetPasswordClick(context),
                 )
                 : null)
@@ -142,7 +152,7 @@ class _LoginWidget extends State<LoginWidget> {
       ),
     );
   }
-  _buildSocialLoginButtons() {
+  _buildSocialLoginButtons(BuildContext context) {
     if (widget.socialLoginButtons != null && widget.socialLoginButtons.length > 0) {
       List<Widget> widgets = [
         Padding(
@@ -151,7 +161,7 @@ class _LoginWidget extends State<LoginWidget> {
         ),
         Padding(
           padding: EdgeInsets.only(bottom: 8),
-          child: Text(widget.orSignWithText),
+          child: Text(widget.orSignWithText ?? localization[LoginWidgetMessages.orSignWithText]),
         ),
       ];
       widgets.addAll(widget.socialLoginButtons); 

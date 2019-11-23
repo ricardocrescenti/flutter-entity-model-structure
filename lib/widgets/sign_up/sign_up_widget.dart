@@ -13,8 +13,8 @@ class SignUpWidget extends StatefulWidget{
   SignUpWidget({
     this.title,
     this.centerTitle = false,
-    this.continueButton = const Text('CONTINUE'),
-    this.finalizeButton = const Text('FINALIZE'),
+    this.continueButton,
+    this.finalizeButton,
     this.onFinalize,
     @required this.steps
   });
@@ -46,8 +46,8 @@ class SignUpWidgetState extends State<SignUpWidget> {
     return StepperWidget(
       showStepTitle: true,
       centerTitle: widget.centerTitle,
-      continueButton: widget.continueButton,
-      finalizeButton: widget.finalizeButton,
+      continueButton: widget.continueButton ?? Text(UserStructureLocalization.of(context)[SignUpWidgetMessages.continueButtonText]),
+      finalizeButton: widget.finalizeButton ?? Text(UserStructureLocalization.of(context)[SignUpWidgetMessages.finalizeButtonText]),
       onFinalize: widget.onFinalize,
       steps: widget.steps,
     );

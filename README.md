@@ -2,13 +2,37 @@
 
 A new Flutter package project.
 
-## Getting Started
+## AvatarWidget
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+This widget use [image_cropper](https://pub.dev/packages/image_cropper) and [image_picker](https://pub.dev/packages/image_picker) packages to open and crop image, to allow photos changed, pass the `onPhotoChange` parameter.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+If you need to use this feature, you will need to edit the following files.
+
+### Android
+
+File: `android/app/src/main/AndroidManifest.xml`<br/>
+Add following lines inside the `<application>` tag.
+
+```xml
+<activity
+    android:name="com.yalantis.ucrop.UCropActivity"
+    android:screenOrientation="portrait"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+```
+
+### iOS
+
+File: `ios/Runner/Info.plist`<br/>
+Add following lines inside the `<dict>` tag.
+
+```xml
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Example usage description</string>
+<key>NSCameraUsageDescription</key>
+<string>Example usage description</string>
+```
+
+## LoginWidget
+
+
+## SignUpWidget

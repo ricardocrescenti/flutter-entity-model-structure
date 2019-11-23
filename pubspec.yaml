@@ -10,13 +10,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  simple_localization: ^1.0.0
+
+  simple_form:
+    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
+  useful_classes: 
+    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-classes'
+  useful_widgets: ^1.2.0
+    #path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
+
   cached_network_image: ^1.1.3
   image_cropper: ^1.1.0
   image_picker: ^0.6.1+11
-  simple_form:
-    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
-  useful_widgets:
-    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
   font_awesome_flutter: ^8.5.0
 
 dev_dependencies:
