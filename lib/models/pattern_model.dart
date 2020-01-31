@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 abstract class PatternModel {
   Map<String, dynamic> json;
 
-  BigInt id;
-  String uuid;  
+  //BigInt id;
+  String uuid;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -23,6 +23,16 @@ abstract class PatternModel {
     }
     return nullValue;
   }
+  setJsonValue(Map map, String valueName, dynamic value, {bool onlyNotNull = false}) {
+    if (onlyNotNull && value == null) {
+      return;
+    }
+    map[valueName] = value;
+  }
+
+  List<String> fields() {
+    return ['uuid', 'created_at', 'updated_at'];
+  }
 
   PatternModel.fromJson(dynamic json) {
     if (json is String) {
@@ -31,7 +41,7 @@ abstract class PatternModel {
       this.json = json;
     }
 
-    this.id = getJsonValue<BigInt>('id');
+    //this.id = getJsonValue<BigInt>('id');
     this.uuid = getJsonValue<String>('uuid');
     this.createdAt = getJsonValue<DateTime>('created_at');
     this.updatedAt = getJsonValue<DateTime>('updated_at');
@@ -41,10 +51,10 @@ abstract class PatternModel {
   Map<String, dynamic> toJson() {
     Map map = Map<String, dynamic>();
 
-    map['id'] = this.id;
-    map['uuid'] = this.uuid;
-    map['created_at'] = this.createdAt;
-    map['updated_at'] = this.updatedAt;
+    //setJsonValue(map, 'id', this.id, onlyNotNull: true);
+    setJsonValue(map, 'uuid', this.uuid, onlyNotNull: true);
+    //map['created_at'] = this.createdAt;
+    //map['updated_at'] = this.updatedAt;
 
     return map;
   }

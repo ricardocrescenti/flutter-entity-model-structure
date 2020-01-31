@@ -82,7 +82,8 @@ class AvatarWidget extends StatelessWidget {
     } else if (avatar is CachedNetworkImage) {
       return avatar;
     } else if (avatar is String && (avatar as String).isNotEmpty) {
-      return CachedNetworkImage(imageUrl: avatar);
+      
+      return CachedNetworkImage(imageUrl: avatar,);
     }
   }
 

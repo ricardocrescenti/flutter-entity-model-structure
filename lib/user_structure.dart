@@ -11,6 +11,9 @@ export 'buttons/twitter_login_button.dart';
 
 export 'models/pattern_model.dart';
 export 'models/entity_model_pattern.dart';
+export 'models/photo_model_pattern.dart';
+export 'models/user_auth_model_pattern.dart';
+export 'models/user_model_pattern.dart';
 
 export 'widgets/avatar/avatar_widget.dart';
 export 'widgets/login/login_widget.dart';
