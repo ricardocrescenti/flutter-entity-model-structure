@@ -12,6 +12,13 @@ abstract class EntityModelPattern<EntityType, Photo> extends PatternModel {
   String document;
   String document2;
   String document3;
+  double rating;
+  int publicationsQuantity;
+  int photosQuantity;
+  int contractsQuantity;
+  int followersQuantity;
+  int followingsQuantity;
+  bool imFollowing;
   //BigInt photoId;
   Photo photo;
 
@@ -31,6 +38,13 @@ abstract class EntityModelPattern<EntityType, Photo> extends PatternModel {
     this.document = getJsonValue<String>('document');
     this.document2 = getJsonValue<String>('document2');
     this.document3 = getJsonValue<String>('document3');
+    this.rating = getJsonValue<double>('rating');
+    this.publicationsQuantity = getJsonValue<int>('publications_quantity');
+    this.photosQuantity = getJsonValue<int>('photos_quantity');
+    this.contractsQuantity = getJsonValue<int>('contracts_quantity');
+    this.followersQuantity = getJsonValue<int>('followers_quantity');
+    this.followingsQuantity = getJsonValue<int>('followings_quantity');
+    this.imFollowing = getJsonValue<bool>('im_following', convertion: (value) => (value == 1 ? true : false));
     //this.photoId = getJsonValue<BigInt>('photo_id');
     this.photo = getJsonValue<Photo>('photo', convertion: (value) => getPhotoFromJson(value));
   }

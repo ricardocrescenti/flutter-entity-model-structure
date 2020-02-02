@@ -51,20 +51,23 @@ class AvatarWidget extends StatelessWidget {
       return Container();
     }
     
-    return Column(
-      children: <Widget>[
-        CircleAvatar(
-          radius: 14,
-          backgroundColor: Colors.white,
-          child: IconButton(
-            padding: EdgeInsets.all(0),
-            icon: Icon(Icons.camera_alt),
-            iconSize: 20,
-            autofocus: false,
-            onPressed: _changeImage,
-          ),
-        )
-      ],
+    return Padding(
+      padding: EdgeInsets.only(right: 14, bottom: 14),
+      child: Column(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 14,
+            backgroundColor: Colors.white,
+            child: IconButton(
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.camera_alt),
+              iconSize: 20,
+              autofocus: false,
+              onPressed: _changeImage,
+            ),
+          )
+        ],
+      ),
     );
   }
   
