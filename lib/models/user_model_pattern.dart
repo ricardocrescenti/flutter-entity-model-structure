@@ -12,12 +12,12 @@ abstract class UserModelPattern<EntityModel extends EntityModelPattern> extends 
   }
 
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
     Map<String, dynamic> map = super.toJson();
 
     //setJsonValue(map, 'entity_id', this.entityId, onlyNotNull: true);
-    setJsonValue(map, 'entity', (this.entity != null ? this.entity.toJson() : null), onlyNotNull: true);
+    setJsonValue(map, 'entity', this.entity?.toJson(exportOnlyJsonFields: exportOnlyJsonFields), onlyNotNull: true);
     
-    return map;
+    return filterMap(map, (exportOnlyJsonFields ? json.keys : null));
   }
 }

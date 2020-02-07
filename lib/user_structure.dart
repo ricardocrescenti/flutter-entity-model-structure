@@ -9,9 +9,11 @@ export 'buttons/google_login_button.dart';
 export 'buttons/microsoft_login_button.dart';
 export 'buttons/twitter_login_button.dart';
 
+export 'classes/storage_uploader_manager.dart';
+
 export 'models/pattern_model.dart';
 export 'models/entity_model_pattern.dart';
-export 'models/photo_model_pattern.dart';
+export 'models/image_model_pattern.dart';
 export 'models/user_auth_model_pattern.dart';
 export 'models/user_model_pattern.dart';
 

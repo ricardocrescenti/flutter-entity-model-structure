@@ -30,8 +30,13 @@ abstract class PatternModel {
     map[valueName] = value;
   }
 
-  List<String> fields() {
-    return ['uuid', 'created_at', 'updated_at'];
+  @protected
+  Map<String, dynamic> filterMap(Map<String, dynamic> map, Iterable<String> filterFields) {
+    if (filterFields == null || filterFields.length == 0) {
+      return map;
+    }
+    map.removeWhere((key, value) => (!filterFields.contains(key)));
+    return map;
   }
 
   PatternModel.fromJson(dynamic json) {

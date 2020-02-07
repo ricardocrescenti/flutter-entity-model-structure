@@ -12,18 +12,19 @@ dependencies:
     sdk: flutter
 
   simple_localization: ^1.0.0
-
   simple_form:
     path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
-  useful_classes: 
-    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-classes'
-  useful_widgets: ^1.2.0
-    #path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
+  #useful_classes: 
+  #  path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-classes'
+  useful_widgets: #^1.2.0
+    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
 
   cached_network_image: ^2.0.0-rc.1
+  firebase_storage: ^3.1.1
+  font_awesome_flutter: ^8.5.0
   image_cropper: ^1.1.0
   image_picker: ^0.6.1+11
-  font_awesome_flutter: ^8.5.0
+  uuid: 2.0.4
 
 dev_dependencies:
   flutter_test:

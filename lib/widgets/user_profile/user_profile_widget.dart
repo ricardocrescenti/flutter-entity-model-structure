@@ -35,6 +35,7 @@ class UserProfileWidget extends StatelessWidget {
           AvatarWidget(
             size: 90,
             border: 1,
+            avatar: entity.photo?.publicUrl,
             onPhotoChange: onPhotoChangeTap,
           ),
         ],

@@ -1,6 +1,11 @@
-import 'package:user_structure/models/pattern_model.dart';
+import 'dart:io';
 
-abstract class EntityModelPattern<EntityType, Photo> extends PatternModel {
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:user_structure/models/pattern_model.dart';
+import 'package:user_structure/user_structure.dart';
+import 'package:uuid/uuid.dart';
+
+abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> extends PatternModel {
   String name;
   String displayName;
   String email;
@@ -24,7 +29,33 @@ abstract class EntityModelPattern<EntityType, Photo> extends PatternModel {
 
   EntityType getEntityTypeFromJson(dynamic entityType);
   dynamic entityTypeToJson(EntityType entityType);
+  
   Photo getPhotoFromJson(dynamic json);
+  Photo createPhotoModel();
+  Future<StorageUploadTask> uploadPhoto(File file) async {
+    try {
+
+      if (this.photo == null) {
+        this.photo = createPhotoModel();
+      } else {
+        this.photo.privateUrl = null;
+        this.photo.publicUrl = null;
+      }
+
+      String uuid = Uuid().v1();
+      String extension = file.path.split('.').last;
+      String fileName = '$uuid.$extension';
+      return this.photo.uploadPhotoManager.uploadFile(file, fileName, onComplete: (snapshot) {
+        this.photo.privateUrl = snapshot.ref.path;
+        this.photo.publicUrl = 'teste';
+      });
+
+    } catch(error) {
+      print('Erro on upload entity photo.');
+      print(error.toString());
+    }
+    return null;
+  }
 
   EntityModelPattern.fromJson(json) : super.fromJson(json) {
     this.name = getJsonValue<String>('name');
@@ -50,7 +81,7 @@ abstract class EntityModelPattern<EntityType, Photo> extends PatternModel {
   }
 
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
     Map<String, dynamic> map = super.toJson();
 
     setJsonValue(map, 'name', this.name);
@@ -65,9 +96,9 @@ abstract class EntityModelPattern<EntityType, Photo> extends PatternModel {
     setJsonValue(map, 'document2', this.document2);
     setJsonValue(map, 'document3', this.document3);
     //setJsonValue(map, 'photo_id', this.photoId, onlyNotNull: true);
-    setJsonValue(map, 'photo', this.photo, onlyNotNull: true);
+    setJsonValue(map, 'photo', this.photo?.toJson(exportOnlyJsonFields: exportOnlyJsonFields), onlyNotNull: true);
     
-    return map;
+    return filterMap(map, (exportOnlyJsonFields ? json.keys : null));
   }
 
 }

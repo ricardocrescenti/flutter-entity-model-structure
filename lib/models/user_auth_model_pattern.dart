@@ -17,14 +17,14 @@ abstract class UserAuthModelPattern<UserModel extends UserModelPattern> extends 
   }
 
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
     Map map = super.toJson();
 
     setJsonValue(map, 'method', this.method);
     setJsonValue(map, 'identifer', this.identifer);
     //setJsonValue(map, 'user_id', this.userId, onlyNotNull: true);
-    setJsonValue(map, 'user', (this.user != null ? this.user.toJson() : null), onlyNotNull: true);
+    setJsonValue(map, 'user', this.user?.toJson(exportOnlyJsonFields: exportOnlyJsonFields), onlyNotNull: true);
 
-    return map;
+    return filterMap(map, (exportOnlyJsonFields ? json.keys : null));
   }
 }
