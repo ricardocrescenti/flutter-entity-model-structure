@@ -12,7 +12,7 @@ abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> e
   String phoneNumber;
   EntityType entityType;
   String message;
-  DateTime birthday;
+  DateTime birth;
   String genre;
   String document;
   String document2;
@@ -64,7 +64,7 @@ abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> e
     this.phoneNumber = getJsonValue<String>('phone_number');
     this.entityType = getJsonValue<EntityType>('entity_type', convertion: (value) => getEntityTypeFromJson(value));
     this.message = getJsonValue<String>('message');
-    this.birthday = getJsonValue<DateTime>('birthday');
+    this.birth = getJsonValue<DateTime>('birth');
     this.genre = getJsonValue<String>('genre');
     this.document = getJsonValue<String>('document');
     this.document2 = getJsonValue<String>('document2');
@@ -90,7 +90,7 @@ abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> e
     setJsonValue(map, 'phone_number', this.phoneNumber);
     setJsonValue(map, 'entity_type', entityTypeToJson(this.entityType));
     setJsonValue(map, 'message', this.message);
-    setJsonValue(map, 'birthday', this.birthday);
+    setJsonValue(map, 'birth', this.birth);
     setJsonValue(map, 'genre', this.genre);
     setJsonValue(map, 'document', this.document);
     setJsonValue(map, 'document2', this.document2);

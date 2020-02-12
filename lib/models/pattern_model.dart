@@ -14,10 +14,12 @@ abstract class PatternModel {
     if (this.json[valueName] != null) {
       if (convertion != null) {
         return convertion(this.json[valueName]);
-      } else if (T is BigInt) {
+      } else if (T == BigInt) {
         return BigInt.parse(this.json[valueName].toString());
-      } else if (T is DateTime) {
-        return DateTime.parse(this.json['created_at'].toString());
+      } else if (T == DateTime) {
+        if (!(this.json[valueName] is DateTime)) {
+          return DateTime.parse(this.json[valueName].toString());
+        }
       }
       return this.json[valueName] as T;
     }
