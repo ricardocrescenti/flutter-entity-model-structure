@@ -11,7 +11,7 @@ class TwitterLoginButton extends StatelessWidget{
   TwitterLoginButton({
     this.text,
     this.rouded = false,
-    this.onPressed,
+    @required this.onPressed,
   });
   
   @override

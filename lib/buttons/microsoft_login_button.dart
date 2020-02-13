@@ -11,7 +11,7 @@ class MicrosoftLoginButton extends StatelessWidget{
   MicrosoftLoginButton({
     this.text,
     this.rouded = false,
-    this.onPressed,
+    @required this.onPressed,
   });
   
   @override

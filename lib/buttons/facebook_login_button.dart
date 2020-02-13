@@ -12,7 +12,7 @@ class FacebookLoginButton extends StatelessWidget{
   FacebookLoginButton({
     this.text,
     this.rouded = false,
-    this.onPressed,
+    @required this.onPressed,
   });
   
   @override

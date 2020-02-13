@@ -11,7 +11,7 @@ class GoogleLoginButton extends StatelessWidget{
   GoogleLoginButton({
     this.text,
     this.rouded = false,
-    this.onPressed,
+    @required this.onPressed,
   });
   
   @override

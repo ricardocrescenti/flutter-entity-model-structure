@@ -11,7 +11,7 @@ class GitHubLoginButton extends StatelessWidget{
   GitHubLoginButton({
     this.text,
     this.rouded = false,
-    this.onPressed,
+    @required this.onPressed,
   });
   
   @override
