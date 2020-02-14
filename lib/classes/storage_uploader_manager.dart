@@ -24,7 +24,7 @@ class StorageUploaderManager {
 
   Future<StorageUploadTask> uploadFile(File file, String fileName, {Function(StorageTaskSnapshot snapshot) onComplete}) async {
     _file = null;
-    await deleteUploadedFile();
+    deleteUploadedFile();
 
     _file = file;
     _storageUploadTask = _storageReference.child('$_destinationFolder/$fileName').putFile(_file);
