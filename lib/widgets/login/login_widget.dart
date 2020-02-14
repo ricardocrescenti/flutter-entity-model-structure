@@ -11,9 +11,9 @@ class LoginWidget extends StatefulWidget {
   final String registerText;
   final String forgetPasswordText;
   final String orSignWithText;
-  final Future<bool> Function(BuildContext context) onLoginClick;
-  final Future<bool> Function(BuildContext context) onForgetPasswordClick;
-  final Future<bool> Function(BuildContext context) onRegisterClick;
+  final Function(BuildContext context) onLoginClick;
+  final Function(BuildContext context) onForgetPasswordClick;
+  final Function(BuildContext context) onRegisterClick;
   final List<Widget> socialLoginButtons;
   final EdgeInsetsGeometry padding;
 
