@@ -5,17 +5,23 @@ import 'package:flutter/cupertino.dart';
 abstract class PatternModel {
   Map<String, dynamic> json;
 
-  //BigInt id;
+  BigInt id;
   String uuid;
   DateTime createdAt;
   DateTime updatedAt;
+
+  PatternModel();
 
   getJsonValue<T>(String valueName, {T Function(dynamic value) convertion, T nullValue}) {
     if (this.json[valueName] != null) {
       if (convertion != null) {
         return convertion(this.json[valueName]);
+      } else if (T == int) {
+        return int.parse(this.json[valueName].toString());
       } else if (T == BigInt) {
         return BigInt.parse(this.json[valueName].toString());
+      } else if (T == double) {
+        return double.parse(this.json[valueName].toString());
       } else if (T == DateTime) {
         if (!(this.json[valueName] is DateTime)) {
           return DateTime.parse(this.json[valueName].toString());
@@ -48,7 +54,7 @@ abstract class PatternModel {
       this.json = json;
     }
 
-    //this.id = getJsonValue<BigInt>('id');
+    this.id = getJsonValue<BigInt>('id', convertion: (value) => BigInt.parse(value.toString()));
     this.uuid = getJsonValue<String>('uuid');
     this.createdAt = getJsonValue<DateTime>('created_at');
     this.updatedAt = getJsonValue<DateTime>('updated_at');
@@ -58,7 +64,7 @@ abstract class PatternModel {
   Map<String, dynamic> toJson() {
     Map map = Map<String, dynamic>();
 
-    //setJsonValue(map, 'id', this.id, onlyNotNull: true);
+    setJsonValue(map, 'id', this.id, onlyNotNull: true);
     setJsonValue(map, 'uuid', this.uuid, onlyNotNull: true);
     //map['created_at'] = this.createdAt;
     //map['updated_at'] = this.updatedAt;
