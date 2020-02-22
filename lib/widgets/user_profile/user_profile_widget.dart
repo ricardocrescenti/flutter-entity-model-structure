@@ -5,25 +5,36 @@ import 'package:user_structure/models/entity_model_pattern.dart';
 import 'package:user_structure/user_structure.dart';
 
 class UserProfileWidget extends StatelessWidget {
-  final EntityModelPattern entity;
+  final String name;
+  final String photoUrl;
   final Future<bool> Function(File) onPhotoChangeTap;
   final Function() onRatingTap;
+  final String message;
   final String emptyMessage;
   final Function() onMessageTap;
+  final int followersQuantity;
   final Function() onFollowersTap;
+  final int followingsQuantity;
   final Function() onFollowingTap;
-  final Function() onFollowButtonTap;
+  final bool imFollowing;
+  final Function() onFollowTap;
 
-  UserProfileWidget(this.entity, {
+  UserProfileWidget({
+    @required this.name,
+    @required this.photoUrl,
     this.onPhotoChangeTap,
     this.onRatingTap,
+    this.message,
     this.emptyMessage, 
     this.onMessageTap,
+    this.followersQuantity,
     this.onFollowersTap,
+    this.followingsQuantity,
     this.onFollowingTap,
-    this.onFollowButtonTap
+    this.imFollowing,
+    this.onFollowTap
   }) {
-    assert(entity != null);
+    assert(this.name != null);
   }
 
   @override
@@ -35,26 +46,26 @@ class UserProfileWidget extends StatelessWidget {
           AvatarWidget(
             size: 90,
             border: 1,
-            avatar: entity.photo?.publicUrl,
+            avatar: this.photoUrl,
             onPhotoChange: onPhotoChangeTap,
           ),
         ],
       ),
       Padding(
         padding: EdgeInsets.only(top: 20.0),
-        child: Text(this.entity.name ?? '', style: Theme.of(context).textTheme.title,),
+        child: Text(this.name ?? '', style: Theme.of(context).textTheme.title,),
       )
     ];
 
-    if ((entity.message != null && entity.message.isNotEmpty) || (emptyMessage != null && emptyMessage.isNotEmpty)) {
+    if ((this.message != null && this.message.isNotEmpty) || (emptyMessage != null && emptyMessage.isNotEmpty)) {
       widgets.add(_buildMessageWidget(context));
     }
 
-    if (entity.followersQuantity != null || entity.followingsQuantity != null) {
+    if (this.followersQuantity != null || this.followingsQuantity != null) {
       widgets.add(_buildFollowQuantity(context));
     }
 
-    if (entity.imFollowing != null) {
+    if (this.imFollowing != null) {
       widgets.add(_buildFollow(context));
     }
 
@@ -72,7 +83,7 @@ class UserProfileWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.fromLTRB(40, 15, 40, 10),
           child: Text(
-              entity.message ?? emptyMessage ?? '',
+              this.message ?? emptyMessage ?? '',
               style: Theme.of(context).textTheme.subtitle,
               textAlign: TextAlign.center,
               softWrap: true,
@@ -83,12 +94,12 @@ class UserProfileWidget extends StatelessWidget {
   _buildFollowQuantity(BuildContext context) {
     List<Widget> items = [];
 
-    if (entity.followersQuantity != null) {
+    if (this.followersQuantity != null) {
       items.add(GestureDetector(
         child: InkWell(
           child: Column(
             children: <Widget>[
-              Text(entity.followersQuantity.toString(), style: Theme.of(context).textTheme.body2.copyWith(fontSize: 25),),
+              Text(this.followersQuantity.toString(), style: Theme.of(context).textTheme.body2.copyWith(fontSize: 25),),
               Text('Seguidores', style: Theme.of(context).textTheme.body2,)
             ],
           ),
@@ -97,12 +108,12 @@ class UserProfileWidget extends StatelessWidget {
       ));
     }
 
-      if (entity.followingsQuantity != null) {
+      if (this.followingsQuantity != null) {
         items.add(GestureDetector(
           child: InkWell(
             child: Column(
               children: <Widget>[
-                Text(entity.followingsQuantity.toString(), style: Theme.of(context).textTheme.body2.copyWith(fontSize: 25),),
+                Text(this.followingsQuantity.toString(), style: Theme.of(context).textTheme.body2.copyWith(fontSize: 25),),
                 Text('Seguindo', style: Theme.of(context).textTheme.body2,)
               ],
             ),
@@ -131,12 +142,12 @@ class UserProfileWidget extends StatelessWidget {
           RaisedButton(
             child: Row(
               children: <Widget>[
-                Icon(entity.imFollowing ? Icons.check : Icons.add),
+                Icon(this.imFollowing ? Icons.check : Icons.add),
                 Padding(padding: EdgeInsets.all(2),),
-                Text(entity.imFollowing ? 'Seguindo' : 'Seguir')
+                Text(this.imFollowing ? 'Seguindo' : 'Seguir')
               ],
             ),
-            onPressed: onFollowButtonTap,
+            onPressed: onFollowTap,
             color: Colors.lightGreen,
             disabledColor: Colors.lightGreen,
             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
@@ -144,6 +155,27 @@ class UserProfileWidget extends StatelessWidget {
 
         ],
       ),
+    );
+  }
+
+  static UserProfileWidget fromEntity(EntityModelPattern entity, {
+    Future<bool> Function(File) onPhotoChangeTap,
+    Function() onRatingTap,
+    String emptyMessage, 
+    Function() onMessageTap,
+    Function() onFollowersTap,
+    Function() onFollowingTap,
+    Function() onFollowButtonTap
+  }) {
+    return UserProfileWidget(
+      name: entity.name,
+      photoUrl: entity?.photo?.publicUrl,
+      onPhotoChangeTap: onPhotoChangeTap,
+      onRatingTap: onRatingTap,
+      emptyMessage: emptyMessage,
+      onFollowersTap: onFollowersTap,
+      onFollowingTap: onFollowingTap,
+      onFollowTap: onFollowButtonTap
     );
   }
 }

@@ -14,8 +14,6 @@ dependencies:
   simple_localization: ^1.0.0
   simple_form:
     path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
-  #useful_classes: 
-  #  path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-classes'
   useful_widgets: #^1.2.0
     path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
 
