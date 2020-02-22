@@ -11,8 +11,8 @@ class LoginWidget extends StatefulWidget {
   final String registerText;
   final String forgetPasswordText;
   final String orSignWithText;
-  final Function(BuildContext context) onLoginClick;
-  final Function(BuildContext context) onForgetPasswordClick;
+  final Function(BuildContext context, String username, String password) onLoginClick;
+  final Function(BuildContext context, String username) onForgetPasswordClick;
   final Function(BuildContext context) onRegisterClick;
   final List<Widget> socialLoginButtons;
   final EdgeInsetsGeometry padding;
@@ -129,7 +129,7 @@ class _LoginWidget extends State<LoginWidget> {
           ),
           RaisedButton(
             child: Text('Login'),
-            onPressed: () => widget.onLoginClick(context),
+            onPressed: () => widget.onLoginClick(context, formValue['username'], formValue['password']),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,7 +143,7 @@ class _LoginWidget extends State<LoginWidget> {
               (widget.onForgetPasswordClick != null
                 ? FlatButton(
                   child: Text(widget.forgetPasswordText ?? localization[LoginWidgetMessages.forgetPasswordText]),
-                  onPressed: () => widget.onForgetPasswordClick(context),
+                  onPressed: () => widget.onForgetPasswordClick(context, formValue['username']),
                 )
                 : null)
             ].where((item) => item != null).toList().cast<Widget>()
