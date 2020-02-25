@@ -6,7 +6,7 @@ import 'package:user_structure/user_structure.dart';
 
 class UserProfileWidget extends StatelessWidget {
   final String name;
-  final String photoUrl;
+  final dynamic photoUrl;
   final Future<bool> Function(File) onPhotoChangeTap;
   final Function() onRatingTap;
   final String message;
@@ -70,7 +70,7 @@ class UserProfileWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
       child: Column(
         children: widgets
       ),
@@ -81,7 +81,7 @@ class UserProfileWidget extends StatelessWidget {
     return GestureDetector(
         onTap: onMessageTap,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(40, 15, 40, 10),
+          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
           child: Text(
               this.message ?? emptyMessage ?? '',
               style: Theme.of(context).textTheme.subtitle,

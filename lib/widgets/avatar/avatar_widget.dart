@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:useful_widgets/widgets/future/future_widget.dart';
 
 class AvatarWidget extends StatelessWidget {
   final double size;
@@ -40,7 +41,10 @@ class AvatarWidget extends StatelessWidget {
       child: CircleAvatar(
         radius: (this.size - this.border),
         child: ClipOval(
-          child: _getImage(),
+          child: FutureWidget<Widget>(
+            future: (context) => _getImage(), 
+            awaitWidget: (context) => CircularProgressIndicator(),
+            builder: (context, result) => result),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
@@ -71,23 +75,25 @@ class AvatarWidget extends StatelessWidget {
     );
   }
   
-  _getImage() {
-    if (avatar == null) {
+  Future<Widget> _getImage() async {
+    dynamic result = (avatar != null && avatar is Future<dynamic> ? await avatar : avatar);
+
+    if (result == null || result.toString().length == 0) {
       if (this.emptyWidget == null) {
         return Icon(Icons.person, size: this.size * 1.5,);
       }
-    
       return this.emptyWidget;
-    }
+    }    
     
-    if (avatar is File) {
-      return Image.file(avatar as File);
-    } else if (avatar is CachedNetworkImage) {
-      return avatar;
-    } else if (avatar is String && (avatar as String).isNotEmpty) {
-      
-      return CachedNetworkImage(imageUrl: avatar,);
+    if (result is File) {
+      return Image.file(result);
+    } else if (result is CachedNetworkImage) {
+      return result;
+    } else if (result is String && (result).isNotEmpty) {
+      return CachedNetworkImage(imageUrl: result,);
     }
+
+    return Text('Invalid type');
   }
 
   _changeImage() async {
