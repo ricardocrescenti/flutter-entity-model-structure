@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:user_structure/models/pattern_model.dart';
 import 'package:user_structure/user_structure.dart';
-import 'package:uuid/uuid.dart';
 
 abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> extends PatternModel {
   String name;
@@ -42,10 +41,7 @@ abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> e
         this.photo.publicUrl = null;
       }
 
-      String uuid = Uuid().v1();
-      String extension = file.path.split('.').last;
-      String fileName = '$uuid.$extension';
-      return this.photo.uploadPhotoManager.uploadFile(file, fileName, onComplete: (snapshot) {
+      return this.photo.uploadPhotoManager.uploadFile(file, onComplete: (snapshot) {
         this.photo.privateUrl = snapshot.ref.path;
         this.photo.publicUrl = 'teste';
       });

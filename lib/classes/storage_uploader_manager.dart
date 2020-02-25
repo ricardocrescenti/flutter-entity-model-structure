@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:uuid/uuid.dart';
 
 class StorageUploaderManager {
   StorageReference _storageReference;
@@ -22,15 +23,24 @@ class StorageUploaderManager {
     _destinationFolder = destinationFolder;
   }
 
-  Future<StorageUploadTask> uploadFile(File file, String fileName, {Function(StorageTaskSnapshot snapshot) onComplete}) async {
+  Future<StorageUploadTask> uploadFile(File file, {String fileName, Function(StorageTaskSnapshot snapshot) onComplete}) async {
+    if (fileName == null) {
+      String uuid = Uuid().v1();
+      String extension = file.path.split('.').last;
+      fileName = '$uuid.$extension';
+    }
+    
     _file = null;
     deleteUploadedFile();
 
     _file = file;
+    print('$_destinationFolder/$fileName');
     _storageUploadTask = _storageReference.child('$_destinationFolder/$fileName').putFile(_file);
-    _storageUploadTask.onComplete.then((StorageTaskSnapshot snapshot) {
-      onComplete(snapshot);
-    });
+    if (onComplete != null) {
+      _storageUploadTask.onComplete.then((StorageTaskSnapshot snapshot) {
+        onComplete(snapshot);
+      });
+    }
     return _storageUploadTask;
   }
   
