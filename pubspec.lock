@@ -248,9 +248,11 @@ packages:
   simple_form:
     dependency: "direct main"
     description:
-      path: "D:\\Projetos\\CrescentiApps\\Flutter-Packages\\flutter-simple-form"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: f9c55d06dbb6747bd1fd4d5ab71af7a5a4a02100
+      url: "https://github.com/ricardocrescenti/flutter-simple-form"
+    source: git
     version: "1.0.0"
   simple_localization:
     dependency: "direct main"
@@ -330,9 +332,11 @@ packages:
   useful_widgets:
     dependency: "direct main"
     description:
-      path: "D:\\Projetos\\CrescentiApps\\Flutter-Packages\\flutter-useful-widgets"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "4239c32f1d5ee267642ac48c476beaceb36947f0"
+      url: "https://github.com/ricardocrescenti/flutter-useful-widgets"
+    source: git
     version: "1.2.0"
   uuid:
     dependency: "direct main"

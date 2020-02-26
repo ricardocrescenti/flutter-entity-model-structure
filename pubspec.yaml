@@ -1,8 +1,8 @@
 name: user_structure
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: Ricardo Crescenti <ricardo.crescenti@gmail.com>
+homepage: https://github.com/ricardocrescenti/flutter-user-structure
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -13,9 +13,11 @@ dependencies:
 
   simple_localization: ^1.0.0
   simple_form:
-    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
-  useful_widgets: #^1.2.0
-    path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
+    #path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
+    git: 'https://github.com/ricardocrescenti/flutter-simple-form'
+  useful_widgets:
+    #path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
+    git: 'https://github.com/ricardocrescenti/flutter-useful-widgets'
 
   cached_network_image: ^2.0.0-rc.1
   firebase_storage: ^3.1.1
