@@ -14,10 +14,14 @@ dependencies:
   simple_localization: ^1.0.0
   simple_form:
     #path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-simple-form'
-    git: 'https://github.com/ricardocrescenti/flutter-simple-form'
+    git: 
+      url: https://github.com/ricardocrescenti/flutter-simple-form.git
+      ref: master
   useful_widgets:
     #path: 'D:\Projetos\CrescentiApps\Flutter-Packages\flutter-useful-widgets'
-    git: 'https://github.com/ricardocrescenti/flutter-useful-widgets'
+    git: 
+      url: https://github.com/ricardocrescenti/flutter-useful-widgets.git
+      ref: master
 
   cached_network_image: ^2.0.0-rc.1
   firebase_storage: ^3.1.1
