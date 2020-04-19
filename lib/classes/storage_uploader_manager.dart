@@ -5,7 +5,10 @@ import 'package:uuid/uuid.dart';
 
 class StorageUploaderManager {
   StorageReference _storageReference;
+  StorageReference get storageReference => _storageReference;
+
   String _destinationFolder;
+  String get destinationFolder => _destinationFolder;
   
   File _file;
   File get file => _file;
@@ -14,7 +17,6 @@ class StorageUploaderManager {
   StorageUploadTask get storageUploadTask => _storageUploadTask;
 
   StorageTaskSnapshot get storageTaskSnapshot => (_storageUploadTask != null ? _storageUploadTask.lastSnapshot : null);
-  StorageReference get storageReference => (_storageUploadTask != null ? _storageUploadTask.lastSnapshot.ref : null);
   
   File downloadedPhotoFile;
 
