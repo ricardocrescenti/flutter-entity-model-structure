@@ -42,7 +42,7 @@ class AvatarWidget extends StatelessWidget {
         radius: (this.size - this.border),
         child: ClipOval(
           child: FutureWidget<Widget>(
-            future: (context) => _getImage(), 
+            future: (context) => _getImage(context), 
             awaitWidget: (context) => CircularProgressIndicator(),
             builder: (context, result) => result),
         ),
@@ -56,11 +56,11 @@ class AvatarWidget extends StatelessWidget {
     }
     
     return Padding(
-      padding: EdgeInsets.only(right: 14, bottom: 14),
+      padding: EdgeInsets.only(right: 8, bottom: 8),
       child: Column(
         children: <Widget>[
           CircleAvatar(
-            radius: 14,
+            radius: 15,
             backgroundColor: Colors.white,
             child: IconButton(
               padding: EdgeInsets.all(0),
@@ -75,22 +75,20 @@ class AvatarWidget extends StatelessWidget {
     );
   }
   
-  Future<Widget> _getImage() async {
+  Future<Widget> _getImage(BuildContext context) async {
     dynamic result = (avatar != null && avatar is Future<dynamic> ? await avatar : avatar);
 
     if (result == null || result.toString().length == 0) {
       if (this.emptyWidget == null) {
-        return Icon(Icons.person, size: this.size * 1.5,);
+        return FittedBox(fit: BoxFit.fill, child: Icon(Icons.person, size: MediaQuery.of(context).size.height,));
       }
       return this.emptyWidget;
-    }    
+    }
     
     if (result is File) {
-      return Image.file(result);
-    } else if (result is CachedNetworkImage) {
-      return result;
+      return Image.file(result, width: double.infinity, height: double.infinity, fit: BoxFit.cover);
     } else if (result is String && (result).isNotEmpty) {
-      return CachedNetworkImage(imageUrl: result,);
+      return CachedNetworkImage(imageUrl: result, width: double.infinity, height: double.infinity, fit: BoxFit.cover);
     }
 
     return Text('Invalid type');
@@ -116,8 +114,6 @@ class AvatarWidget extends StatelessWidget {
         ratioX: 1.0,
         ratioY: 1.0,
       ),
-      maxWidth: 512,
-      maxHeight: 512,
     );
   }
 }
