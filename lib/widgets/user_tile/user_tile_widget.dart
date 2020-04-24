@@ -4,7 +4,7 @@ import 'package:user_structure/user_structure.dart';
 class UserTileWidget extends StatelessWidget {
   final dynamic photo;
   final String name;
-  final String message;
+  final String information;
   final bool enabled;
   final Function() onLongPress;
   final Function() onTap;
@@ -12,7 +12,7 @@ class UserTileWidget extends StatelessWidget {
   UserTileWidget({
     @required this.photo,
     @required this.name,
-    this.message,
+    this.information,
     this.enabled = true,
     this.onLongPress,
     this.onTap
@@ -25,17 +25,17 @@ class UserTileWidget extends StatelessWidget {
         constraints: BoxConstraints(maxWidth: 60, maxHeight: 60),
         child: AvatarWidget(avatar: photo)),
       title: Text(name),
-      subtitle: Text(message),
+      subtitle: Text(information),
       enabled: enabled,
       onLongPress: onLongPress,
       onTap: onTap,);
   }
 
-  static UserTileWidget fromEntity(EntityModelPattern entity, {bool enabled = true, Function() onLongPress, Function() onTap}) {
+  static UserTileWidget fromEntity(EntityModelPattern entity, {String information, bool enabled = true, Function() onLongPress, Function() onTap}) {
     return UserTileWidget(
       photo: entity.photo?.getPublicUrl(size: 150),
       name: entity.name,
-      message: (entity.message ?? ''),
+      information: (information ?? (entity.message ?? '')),
       enabled: enabled,
       onLongPress: onLongPress,
       onTap: onTap
