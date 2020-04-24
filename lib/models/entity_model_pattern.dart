@@ -1,10 +1,9 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:user_structure/models/pattern_model.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:basic_structure/basic_structure.dart';
 
-abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> extends PatternModel {
+abstract class EntityModelPattern<EntityType, Photo extends ImageModelPattern> extends PatternModel {
   String name;
   String displayName;
   String email;
@@ -27,6 +26,7 @@ abstract class EntityModelPattern<EntityType, Photo extends ImagePatternModel> e
   Photo photo;
 
   EntityType getEntityTypeFromJson(dynamic entityType);
+  String getEntityTypeDescription();
   dynamic entityTypeToJson(EntityType entityType);
   
   Photo getPhotoFromJson(dynamic json);

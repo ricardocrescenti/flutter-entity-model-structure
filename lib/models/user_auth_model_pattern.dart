@@ -1,4 +1,4 @@
-import 'package:user_structure/models/pattern_model.dart';
+import 'package:basic_structure/basic_structure.dart';
 import 'package:user_structure/user_structure.dart';
 
 abstract class UserAuthModelPattern<UserModel extends UserModelPattern> extends PatternModel {

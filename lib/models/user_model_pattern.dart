@@ -1,3 +1,4 @@
+import 'package:basic_structure/basic_structure.dart';
 import 'package:user_structure/user_structure.dart';
 
 abstract class UserModelPattern<EntityModel extends EntityModelPattern> extends PatternModel {

@@ -16,13 +16,16 @@ dependencies:
   #   git: 
   #     url: https://github.com/ricardocrescenti/flutter-simple-app.git
   #     ref: master
+  basic_structure:
+    path: 'D:\Projetos\CrescentiApps\Packages\Flutter\flutter-basic-structure'
+  #   git: 
+  #     url: https://github.com/ricardocrescenti/flutter-basic-structure.git
+  #     ref: master
 
   cached_network_image: ^2.0.0-rc.1
-  firebase_storage: ^3.1.1
   font_awesome_flutter: ^8.5.0
   image_cropper: ^1.1.0
   image_picker: ^0.6.1+11
-  uuid: 2.0.4
 
 dev_dependencies:
   flutter_test:

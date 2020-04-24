@@ -3,11 +3,7 @@ library user_structure;
 export 'localizations/localizations_enums.dart';
 export 'localizations/user_structure_localization.dart';
 
-export 'classes/storage_uploader_manager.dart';
-
-export 'models/pattern_model.dart';
 export 'models/entity_model_pattern.dart';
-export 'models/image_model_pattern.dart';
 export 'models/user_auth_model_pattern.dart';
 export 'models/user_model_pattern.dart';
 
