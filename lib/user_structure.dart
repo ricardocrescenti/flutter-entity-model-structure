@@ -8,6 +8,7 @@ export 'models/user_auth_model_pattern.dart';
 export 'models/user_model_pattern.dart';
 
 export 'widgets/avatar/avatar_widget.dart';
+export 'widgets/entity_app_bar_title/entity_app_bar_title.dart';
 export 'widgets/sign_up/sign_up_step_widget.dart';
 export 'widgets/sign_up/sign_up_widget.dart';
 export 'widgets/user_profile/user_profile_widget.dart';
