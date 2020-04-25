@@ -9,6 +9,12 @@ export 'models/entity_model_pattern.dart';
 export 'models/user_auth_model_pattern.dart';
 export 'models/user_model_pattern.dart';
 
+export 'services/locality_service_pattern.dart';
+
+export 'widgets/address_form/address_form.dart';
+export 'widgets/address_form_page/address_form_page.dart';
+export 'widgets/address_tile/address_tile.dart';
+export 'widgets/addresses_list/addresses_list.dart';
 export 'widgets/avatar/avatar_widget.dart';
 export 'widgets/entity_app_bar_title/entity_app_bar_title.dart';
 export 'widgets/sign_up/sign_up_step_widget.dart';

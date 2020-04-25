@@ -24,6 +24,7 @@ class EntityAddressModelPattern extends PatternModel {
     this.state = getJsonValue<String>('state');
     this.country = getJsonValue<String>('country');
   }
+  EntityAddressModelPattern.empty() : super.empty();
 
   @override
   Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
