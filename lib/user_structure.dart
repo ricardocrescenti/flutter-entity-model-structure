@@ -3,6 +3,8 @@ library user_structure;
 export 'localizations/localizations_enums.dart';
 export 'localizations/user_structure_localization.dart';
 
+export 'models/city_model_pattern.dart';
+export 'models/entity_address_model_pattern.dart';
 export 'models/entity_model_pattern.dart';
 export 'models/user_auth_model_pattern.dart';
 export 'models/user_model_pattern.dart';
