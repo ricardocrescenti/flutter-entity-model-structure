@@ -44,8 +44,7 @@ class _AddressFormState<LocalityService extends LocalityServicePattern> extends 
         validators: [RequiredValidator()],),
       SimpleTextField(
         fieldName: 'complement', 
-        title: 'Complemento', 
-        validators: [RequiredValidator()],),
+        title: 'Complemento',),
       SimpleTextField(
         fieldName: 'neighborhood', 
         title: 'Bairro', 
