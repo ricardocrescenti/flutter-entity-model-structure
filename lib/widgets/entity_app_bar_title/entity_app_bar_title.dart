@@ -13,7 +13,7 @@ class EntityAppBarTitle extends StatelessWidget {
       children: [
         (entity == null ? Container() : Padding(
           padding: EdgeInsets.only(right: 10),
-          child: AvatarWidget(avatar: entity.photo.getPublicUrl(size: 75), size: 20,))
+          child: AvatarWidget(avatar: entity.photo?.getPublicUrl(size: 75), size: 20,))
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
