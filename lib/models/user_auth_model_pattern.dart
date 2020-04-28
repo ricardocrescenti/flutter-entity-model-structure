@@ -4,27 +4,29 @@ import 'package:user_structure/user_structure.dart';
 abstract class UserAuthModelPattern<UserModel extends UserModelPattern> extends PatternModel {
   String method;
   String identifer;
-  //BigInt userId;
   UserModel user;
 
   UserModel getUserModel(dynamic json);
 
-  UserAuthModelPattern.fromJson(json) : super.fromJson(json) {
-    this.method = getJsonValue<String>('method');
-    this.identifer = getJsonValue<String>('identifer');
-    //this.userId = getJsonValue<BigInt>('user_id');
-    this.user = getJsonValue<UserModel>('user', convertion: (value) => getUserModel(value));
+  UserAuthModelPattern.fromJson(json) : super.fromJson(json);
+  UserAuthModelPattern.empty() : super.empty();
+
+  @override
+  void updateValues(Map<String, dynamic> values) {
+    super.updateValues(values);
+    method = getJsonValue<String>('method');
+    identifer = getJsonValue<String>('identifer');
+    user = getJsonValue<UserModel>('user', convertion: (value) => getUserModel(value));
   }
 
   @override
-  Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
-    Map map = super.toJson();
+  Map<String, dynamic> toJson({bool exportOnlyChanged = false, bool ignoreNulls = false}) {
+    Map map = super.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls);
 
-    setJsonValue(map, 'method', this.method);
-    setJsonValue(map, 'identifer', this.identifer);
-    //setJsonValue(map, 'user_id', this.userId, onlyNotNull: true);
-    setJsonValue(map, 'user', this.user?.toJson(exportOnlyJsonFields: exportOnlyJsonFields), onlyNotNull: true);
+    setJsonValue(map, 'method', method);
+    setJsonValue(map, 'identifer', identifer, alwaysExport: true);
+    setJsonValue(map, 'user', user?.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls), onlyNotNull: true);
 
-    return filterMap(map, (exportOnlyJsonFields ? json.keys : null));
+    return map;
   }
 }

@@ -44,7 +44,7 @@ abstract class EntityModelPattern<EntityType, PhotoModel extends ImageModelPatte
 
       return this.photo.uploadPhotoManager.uploadFile(file, onComplete: (snapshot) {
         this.photo.privateUrl = snapshot.ref.path;
-        this.photo.publicUrl = 'teste';
+        this.photo.publicUrl = null;
       });
 
     } catch(error) {
@@ -55,49 +55,53 @@ abstract class EntityModelPattern<EntityType, PhotoModel extends ImageModelPatte
   }
 
   List<EntityAddressModel> getEntityAddressesFromJson(dynamic json);
-  List<Map<String, dynamic>> entityAddressesToJson();
 
-  EntityModelPattern.fromJson(json) : super.fromJson(json) {
-    this.name = getJsonValue<String>('name');
-    this.displayName = getJsonValue<String>('display_name');
-    this.email = getJsonValue<String>('email');
-    this.phoneNumber = getJsonValue<String>('phone_number');
-    this.entityType = getJsonValue<EntityType>('entity_type', convertion: (value) => getEntityTypeFromJson(value));
-    this.message = getJsonValue<String>('message');
-    this.birth = getJsonValue<DateTime>('birth');
-    this.gender = getJsonValue<String>('gender');
-    this.document = getJsonValue<String>('document');
-    this.document2 = getJsonValue<String>('document2');
-    this.document3 = getJsonValue<String>('document3');
-    this.rating = getJsonValue<double>('rating');
-    this.publicationsQuantity = getJsonValue<int>('publications_quantity');
-    this.photosQuantity = getJsonValue<int>('photos_quantity');
-    this.contractsQuantity = getJsonValue<int>('contracts_quantity');
-    this.followersQuantity = getJsonValue<int>('followers_quantity');
-    this.followingsQuantity = getJsonValue<int>('followings_quantity');
-    this.imFollowing = getJsonValue<bool>('im_following', convertion: (value) => (value == 1 ? true : false));
-    this.photo = getJsonValue<PhotoModel>('photo', convertion: (value) => getPhotoFromJson(value));
-    this.addresses = getJsonValue<List<EntityAddressModel>>('entities_addresses_entity', convertion: (value) => getEntityAddressesFromJson(value));
+  EntityModelPattern.fromJson(json) : super.fromJson(json);
+  EntityModelPattern.empty() : super.empty();
+
+  @override
+  void updateValues(Map<String, dynamic> values) {
+    super.updateValues(values);
+    name = getJsonValue<String>('name');
+    displayName = getJsonValue<String>('display_name');
+    email = getJsonValue<String>('email');
+    phoneNumber = getJsonValue<String>('phone_number');
+    entityType = getJsonValue<EntityType>('entity_type', convertion: (value) => getEntityTypeFromJson(value));
+    message = getJsonValue<String>('message');
+    birth = getJsonValue<DateTime>('birth');
+    gender = getJsonValue<String>('gender');
+    document = getJsonValue<String>('document');
+    document2 = getJsonValue<String>('document2');
+    document3 = getJsonValue<String>('document3');
+    rating = getJsonValue<double>('rating');
+    publicationsQuantity = getJsonValue<int>('publications_quantity');
+    photosQuantity = getJsonValue<int>('photos_quantity');
+    contractsQuantity = getJsonValue<int>('contracts_quantity');
+    followersQuantity = getJsonValue<int>('followers_quantity');
+    followingsQuantity = getJsonValue<int>('followings_quantity');
+    imFollowing = getJsonValue<bool>('im_following', convertion: (value) => (value == 1 ? true : false));
+    photo = getJsonValue<PhotoModel>('photo', convertion: (value) => getPhotoFromJson(value));
+    addresses = getJsonValue<List<EntityAddressModel>>('entities_addresses_entity', convertion: (value) => getEntityAddressesFromJson(value));
   }
 
   @override
-  Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
-    Map<String, dynamic> map = super.toJson();
+  Map<String, dynamic> toJson({bool exportOnlyChanged = false, bool ignoreNulls = false}) {
+    Map<String, dynamic> map = super.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls);
 
-    setJsonValue(map, 'name', this.name);
-    setJsonValue(map, 'display_name', this.displayName);
-    setJsonValue(map, 'email', this.email);
-    setJsonValue(map, 'phone_number', this.phoneNumber);
-    setJsonValue(map, 'entity_type', entityTypeToJson());
-    setJsonValue(map, 'message', this.message);
-    setJsonValue(map, 'birth', this.birth);
-    setJsonValue(map, 'gender', this.gender);
-    setJsonValue(map, 'document', this.document);
-    setJsonValue(map, 'document2', this.document2);
-    setJsonValue(map, 'document3', this.document3);
-    setJsonValue(map, 'photo', this.photo?.toJson(exportOnlyJsonFields: exportOnlyJsonFields), onlyNotNull: true);
-    setJsonValue(map, 'entities_addresses_entity', entityAddressesToJson());
+    setJsonValue(map, 'name', name);
+    setJsonValue(map, 'display_name', displayName);
+    setJsonValue(map, 'email', email);
+    setJsonValue(map, 'phone_number', phoneNumber);
+    setJsonValue(map, 'entity_type', entityTypeToJson(), onlyNotNull: true);
+    setJsonValue(map, 'message', message);
+    setJsonValue(map, 'birth', birth);
+    setJsonValue(map, 'gender', gender);
+    setJsonValue(map, 'document', document);
+    setJsonValue(map, 'document2', document2);
+    setJsonValue(map, 'document3', document3);
+    setJsonValue(map, 'photo', photo?.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls), onlyNotNull: true);
+    setJsonValue(map, 'entities_addresses_entity', addresses, onlyNotNull: true, convertion: (address) => address.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls));
     
-    return filterMap(map, (exportOnlyJsonFields ? json.keys : null));
+    return map;
   }
 }

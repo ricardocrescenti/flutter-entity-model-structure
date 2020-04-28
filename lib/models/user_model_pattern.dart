@@ -2,23 +2,25 @@ import 'package:basic_structure/basic_structure.dart';
 import 'package:user_structure/user_structure.dart';
 
 abstract class UserModelPattern<EntityModel extends EntityModelPattern> extends PatternModel {
-  //BigInt entityId;
   EntityModel entity;
 
   getEntityModel(dynamic json);
 
-  UserModelPattern.fromJson(json) : super.fromJson(json) {
-    //this.entityId = getJsonValue<BigInt>('entity_id');
-    this.entity = getJsonValue<EntityModel>('entity', convertion: (value) => getEntityModel(value));
+  UserModelPattern.fromJson(json) : super.fromJson(json);
+  UserModelPattern.empty() : super.empty();
+
+  @override
+  void updateValues(Map<String, dynamic> values) {
+    super.updateValues(values);
+    entity = getJsonValue<EntityModel>('entity', convertion: (value) => getEntityModel(value));
   }
 
   @override
-  Map<String, dynamic> toJson({bool exportOnlyJsonFields = false}) {
-    Map<String, dynamic> map = super.toJson();
+  Map<String, dynamic> toJson({bool exportOnlyChanged = false, bool ignoreNulls = false}) {
+    Map<String, dynamic> map = super.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls);
 
-    //setJsonValue(map, 'entity_id', this.entityId, onlyNotNull: true);
-    setJsonValue(map, 'entity', this.entity?.toJson(exportOnlyJsonFields: exportOnlyJsonFields), onlyNotNull: true);
+    setJsonValue(map, 'entity', entity?.toJson(exportOnlyChanged: exportOnlyChanged, ignoreNulls: ignoreNulls), onlyNotNull: true);
     
-    return filterMap(map, (exportOnlyJsonFields ? json.keys : null));
+    return map;
   }
 }

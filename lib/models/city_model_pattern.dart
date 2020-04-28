@@ -8,16 +8,16 @@ class CityModel {
   String state;
 
   CityModel.fromViaCepJson(json) {
-    this.code = json['ibge'];
-    this.name = json['localidade'];
-    this.street = json['logradouro'];
-    this.complement = json['complemento'];
-    this.neighborhood = json['bairro'];
-    this.zipCode = json['cep'];
-    this.state = json['uf'];
+    code = json['ibge'];
+    name = json['localidade'];
+    street = json['logradouro'];
+    complement = json['complemento'];
+    neighborhood = json['bairro'];
+    zipCode = json['cep'];
+    state = json['uf'];
   }
   CityModel.fromIbgeJson(json) {
-    this.code = json['id'].toString();
-    this.name = json['nome'];
+    code = json['id'].toString();
+    name = json['nome'];
   }
 }
