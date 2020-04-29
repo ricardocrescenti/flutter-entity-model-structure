@@ -5,12 +5,10 @@ import 'package:user_structure/user_structure.dart';
 class AddressForm<LocalityService extends LocalityServicePattern> extends StatefulWidget {
   final LocalityService localityService;
   final ValuesProvider valuesProvider;
-  final Function(String fieldName, dynamic value) onChange;
 
   AddressForm({
     @required this.localityService,
-    @required this.valuesProvider,
-    this.onChange,
+    @required this.valuesProvider
   });
 
   @override
@@ -20,58 +18,48 @@ class AddressForm<LocalityService extends LocalityServicePattern> extends Statef
 class _AddressFormState<LocalityService extends LocalityServicePattern> extends State<AddressForm> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> fields = [
-      SimpleTextField(
-        fieldName: 'contact', 
-        title: 'Contato', 
-        textCapitalization: TextCapitalization.words,
-        validators: [RequiredValidator()],),
-      SimpleTextField(
-        fieldName: 'zip_code', 
-        title: 'CEP', 
-        keyboardType: TextInputType.number, 
-        inputFormatters: [SimpleFormatter('00000-000')], 
-        validators: [RequiredValidator()],
-        onChange: (value) => loadCity(context, value),),
-      SimpleTextField(
-        fieldName: 'street', 
-        title: 'Endereço', 
-        textCapitalization: TextCapitalization.words,
-        validators: [RequiredValidator()],),
-      SimpleTextField(
-        fieldName: 'number', 
-        title: 'Número', 
-        validators: [RequiredValidator()],),
-      SimpleTextField(
-        fieldName: 'complement', 
-        title: 'Complemento',),
-      SimpleTextField(
-        fieldName: 'neighborhood', 
-        title: 'Bairro', 
-        textCapitalization: TextCapitalization.words,
-        validators: [RequiredValidator()],),
-      SimpleTextField(
-        fieldName: 'city_name', 
-        title: 'Cidade', 
-        validators: [RequiredValidator()],
-        enabled: false,),
-      SimpleTextField(
-        fieldName: 'state', 
-        title: 'Estado', 
-        validators: [RequiredValidator()],
-        enabled: false,),
-    ];
-
-    return SimpleForm(
-      key: widget.valuesProvider.getValue('form_state'),
-      initialValues: widget.valuesProvider.values,
-      onChange: (fieldName, newValue) {
-        widget.valuesProvider.setValue(fieldName, newValue);
-        widget?.onChange(fieldName, newValue);
-      },
-      child: FormLayout(
-        scroll: true,
-        builder: (fl) => fl.rows(fields),),
+    return Column(
+      children: [
+        SimpleTextField(
+          fieldName: 'contact', 
+          title: 'Contato', 
+          textCapitalization: TextCapitalization.words,
+          validators: [RequiredValidator()],),
+        SimpleTextField(
+          fieldName: 'zip_code', 
+          title: 'CEP', 
+          keyboardType: TextInputType.number, 
+          inputFormatters: [SimpleFormatter('00000-000')], 
+          validators: [RequiredValidator()],
+          onChange: (value) => loadCity(context, value),),
+        SimpleTextField(
+          fieldName: 'street', 
+          title: 'Endereço', 
+          textCapitalization: TextCapitalization.words,
+          validators: [RequiredValidator()],),
+        SimpleTextField(
+          fieldName: 'number', 
+          title: 'Número', 
+          validators: [RequiredValidator()],),
+        SimpleTextField(
+          fieldName: 'complement', 
+          title: 'Complemento',),
+        SimpleTextField(
+          fieldName: 'neighborhood', 
+          title: 'Bairro', 
+          textCapitalization: TextCapitalization.words,
+          validators: [RequiredValidator()],),
+        SimpleTextField(
+          fieldName: 'city_name', 
+          title: 'Cidade', 
+          validators: [RequiredValidator()],
+          enabled: false,),
+        SimpleTextField(
+          fieldName: 'state', 
+          title: 'Estado', 
+          validators: [RequiredValidator()],
+          enabled: false,),
+      ]
     );
   }
 
