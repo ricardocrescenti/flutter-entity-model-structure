@@ -11,6 +11,8 @@ abstract class EntityAddressModelPattern extends PatternModel {
   String zipCode;
   String state;
   String country;
+  bool primary;
+  String coordinate;
 
   EntityAddressModelPattern.fromJson(json) : super.fromJson(json);
   EntityAddressModelPattern.empty() : super.empty();
@@ -28,6 +30,8 @@ abstract class EntityAddressModelPattern extends PatternModel {
     zipCode = getJsonValue<String>('zip_code');
     state = getJsonValue<String>('state');
     country = getJsonValue<String>('country');
+    primary = getJsonValue<bool>('primary');
+    coordinate = getJsonValue<String>('coordinate');
   }
 
   @override
@@ -44,6 +48,8 @@ abstract class EntityAddressModelPattern extends PatternModel {
     setJsonValue(map, 'zip_code', zipCode);
     setJsonValue(map, 'state', state);
     setJsonValue(map, 'country', country);
+    setJsonValue(map, 'primary', primary);
+    setJsonValue(map, 'coordinate', coordinate);
     
     return map;
   }
