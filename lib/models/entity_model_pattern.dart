@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:basic_structure/basic_structure.dart';
 import 'package:user_structure/user_structure.dart';
 
-abstract class EntityModelPattern<EntityType, PhotoModel extends ImageModelPattern, EntityAddressModel extends EntityAddressModelPattern> extends PatternModel {
+abstract class EntityModelPattern<EntityType, PhotoModel extends FileModelPattern, EntityAddressModel extends EntityAddressModelPattern> extends PatternModel {
   String name;
   String displayName;
   String email;
@@ -44,6 +44,7 @@ abstract class EntityModelPattern<EntityType, PhotoModel extends ImageModelPatte
 
       return this.photo.uploadPhotoManager.uploadFile(file, onComplete: (snapshot) {
         this.photo.privateUrl = snapshot.ref.path;
+        this.photo.type = snapshot.storageMetadata.contentType;
         this.photo.publicUrl = null;
       });
 
