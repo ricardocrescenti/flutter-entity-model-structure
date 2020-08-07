@@ -5,10 +5,12 @@ import 'package:user_structure/user_structure.dart';
 class AddressForm<LocalityService extends LocalityServicePattern> extends StatefulWidget {
   final LocalityService localityService;
   final ValuesProvider valuesProvider;
+  final List<Widget> aditionalWidgets;
 
   AddressForm({
     @required this.localityService,
-    @required this.valuesProvider
+    @required this.valuesProvider,
+    this.aditionalWidgets
   });
 
   @override
@@ -66,6 +68,8 @@ class _AddressFormState<LocalityService extends LocalityServicePattern> extends 
         title: 'Definir este endereço como principal', 
         validators: [RequiredValidator()]));
     }
+
+    fields.addAll(widget.aditionalWidgets ?? []);
 
     return Column(
       children: fields
