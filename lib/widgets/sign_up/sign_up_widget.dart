@@ -7,7 +7,7 @@ class SignUpWidget extends StatefulWidget{
   final bool centerTitle;
   final Widget continueButton;
   final Widget finalizeButton;
-  final Future<bool> Function(BuildContext context) onFinalize;
+  final Future<void> Function(BuildContext context) onFinalize;
   final List<SignUpStepWidget> steps;  
 
   SignUpWidget({
