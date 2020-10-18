@@ -78,9 +78,9 @@ class _AddressFormState<LocalityService extends LocalityServicePattern> extends 
 
   loadCity(BuildContext context, String zipCode) async {
     if (zipCode != null && zipCode.replaceAll('.', '').replaceAll('-', '').replaceAll('_', '').length == 8) {
-      await Dialogs.showAwait<CityModel>(context, 'Consultando cidade', () async {
+      await showAwaitDialog<ViaCepCityModel>(context, message: Text('Consultando cidade'), function: (context, updateMessage) async {
         
-        CityModel city = await widget.localityService.getCity('BRA', zipCode);
+        ViaCepCityModel city = await widget.localityService.getCity('BRA', zipCode);
         if (city != null) {
           if (city.street != null && city.street.isNotEmpty) {
             widget.valuesProvider.setValue('street', city.street);

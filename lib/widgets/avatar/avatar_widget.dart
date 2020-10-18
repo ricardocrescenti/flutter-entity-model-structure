@@ -42,7 +42,7 @@ class AvatarWidget extends StatelessWidget {
         radius: (this.size - this.border),
         child: ClipOval(
           child: FutureWidget<Widget>(
-            future: (context) => _getImage(context), 
+            load: (context) => _getImage(context), 
             awaitWidget: (context) => CircularProgressIndicator(),
             builder: (context, result) => result),
         ),

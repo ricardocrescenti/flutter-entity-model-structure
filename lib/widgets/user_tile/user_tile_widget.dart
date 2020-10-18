@@ -35,7 +35,7 @@ class UserTileWidget extends StatelessWidget {
     return UserTileWidget(
       photo: entity.photo?.getPublicUrl(size: 150),
       name: entity.name,
-      information: (information ?? (entity.message ?? '')),
+      //information: (information ?? (entity.message ?? '')),
       enabled: enabled,
       onLongPress: onLongPress,
       onTap: onTap

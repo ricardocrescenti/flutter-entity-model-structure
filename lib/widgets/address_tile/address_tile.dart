@@ -34,7 +34,7 @@ class AddressTile extends StatelessWidget {
     assert(address.street != null);
 
     List<Widget> title = [Text(address.contact, style: TextStyle(fontWeight: FontWeight.bold))];
-    if (address.primary ?? false) {
+    if (address.isDefault ?? false) {
       title.addAll([
         Padding(padding: EdgeInsets.only(left: 5)),
         Text('-', textScaleFactor: 0.8, style: TextStyle(fontWeight: FontWeight.bold)),
@@ -49,8 +49,8 @@ class AddressTile extends StatelessWidget {
       lines.add(Text(address.neighborhood));
     }
 
-    if (address.cityName != null && address.cityName.isNotEmpty) {
-      lines.add(Text(address.cityName + (address.state != null && address.state.isNotEmpty ? ' - ' + address.state : '')));
+    if (address.city != null) {
+      lines.add(Text(address.city.name + (address.city.state != null && address.city.state.isNotEmpty ? ' - ' + address.city.state : '')));
     }
 
     if (address.zipCode != null && address.zipCode.isNotEmpty) {

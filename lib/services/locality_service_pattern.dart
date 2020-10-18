@@ -35,22 +35,22 @@ class LocalityServicePattern extends Service {
 
   LocalityServicePattern(Module module) : super(module);
   
-  Future<CityModel> getCity(String country, String zipCode) async {
+  Future<ViaCepCityModel> getCity(String country, String zipCode) async {
     if (country == 'BRA') {
       zipCode = zipCode.replaceAll('.', '').replaceAll('-', '').replaceAll('_', '');
       Response response = await Dio().get('https://viacep.com.br/ws/$zipCode/json');
-      CityModel city = (response.data['erro'] != null ? null : CityModel.fromViaCepJson(response.data));
+      ViaCepCityModel city = (response.data['erro'] != null ? null : ViaCepCityModel.fromViaCepJson(response.data));
       return city;
     }
 
     throw UnimplementedError('City query for country "$country" is not implemented');
   }
 
-  Future<List<CityModel>> getCities(String country, String state) async {
+  Future<List<ViaCepCityModel>> getCities(String country, String state) async {
     if (country == 'BRA') {
       Response response = await Dio().get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/${brazilStatesCode[state]}/municipios');
-      dynamic teste = response.data.map((city) => CityModel.fromIbgeJson(city));
-      List<CityModel> cities = teste.toList().cast<CityModel>();
+      dynamic teste = response.data.map((city) => ViaCepCityModel.fromIbgeJson(city));
+      List<ViaCepCityModel> cities = teste.toList().cast<ViaCepCityModel>();
       return cities;
     }
     

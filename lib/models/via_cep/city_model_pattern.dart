@@ -1,4 +1,4 @@
-class CityModel {
+class ViaCepCityModel {
   String code;
   String name;
   String street;
@@ -7,7 +7,7 @@ class CityModel {
   String zipCode;
   String state;
 
-  CityModel.fromViaCepJson(json) {
+  ViaCepCityModel.fromViaCepJson(json) {
     code = json['ibge'];
     name = json['localidade'];
     street = json['logradouro'];
@@ -16,7 +16,7 @@ class CityModel {
     zipCode = json['cep'];
     state = json['uf'];
   }
-  CityModel.fromIbgeJson(json) {
+  ViaCepCityModel.fromIbgeJson(json) {
     code = json['id'].toString();
     name = json['nome'];
   }
