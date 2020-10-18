@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:simple_app/simple_app.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 class LocalityServicePattern extends Service {
   final Map<String, String> brazilStatesCode = {

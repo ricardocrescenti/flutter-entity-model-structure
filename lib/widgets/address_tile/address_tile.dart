@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 class AddressTile extends StatelessWidget {
   final Widget title;

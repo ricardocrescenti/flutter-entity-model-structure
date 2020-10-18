@@ -1,5 +1,5 @@
 import 'package:basic_model_structure/basic_model_structure.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 abstract class PermissionModelPattern<UserModel extends UserModelPattern, EntityModel extends EntityModelPattern> extends PatternModel {
   UserModel user;

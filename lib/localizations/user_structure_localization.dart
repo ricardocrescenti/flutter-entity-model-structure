@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:simple_localization/simple_localization.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 class UserStructureLocalization extends SimpleLocalizations {
   static UserStructureLocalization of(BuildContext context) {

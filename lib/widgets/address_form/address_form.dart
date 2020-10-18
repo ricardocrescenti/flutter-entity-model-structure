@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_app/simple_app.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 class AddressForm<LocalityService extends LocalityServicePattern> extends StatefulWidget {
   final LocalityService localityService;

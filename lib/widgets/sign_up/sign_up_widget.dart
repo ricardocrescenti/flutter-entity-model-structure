@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:useful_widgets/widgets/stepper/stepper_widget.dart';
-import 'package:user_structure/user_structure.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 class SignUpWidget extends StatefulWidget{
   final Widget title;

@@ -1,5 +1,5 @@
 import 'package:basic_model_structure/basic_model_structure.dart';
-import 'package:user_structure/models/locality/city_model_pattern.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
 
 abstract class EntityAddressModelPattern<CityModel extends CityModelPattern> extends PatternModel {
   String description;

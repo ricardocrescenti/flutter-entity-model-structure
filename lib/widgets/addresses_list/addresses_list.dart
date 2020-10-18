@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:user_structure/user_structure.dart';
-import 'package:user_structure/widgets/address_tile/address_tile.dart';
+import 'package:entity_model_structure/entity_model_structure.dart';
+import 'package:entity_model_structure/widgets/address_tile/address_tile.dart';
 
 class AddressesList extends StatelessWidget {
   final List<EntityAddressModelPattern> addresses;
