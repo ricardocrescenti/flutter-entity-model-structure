@@ -56,10 +56,10 @@ abstract class EntityModelPattern<EntityDocumentModel extends EntityDocumentMode
   EntityModelPattern.fromJson(json) : super.fromJson(json);
 
   @override
-  void updateValues(Map<String, dynamic> values) {
-    super.updateValues(values);
+  void readValues() {
+    super.readValues();
     name = readValue<String>('name');
-    displayName = readValue<String>('display_name');
+    displayName = readValue<String>('displayName');
     email = readValue<String>('email');
     birthData = readValue<DateTime>('birthData');
     gender = readValue<String>('gender');
@@ -72,7 +72,7 @@ abstract class EntityModelPattern<EntityDocumentModel extends EntityDocumentMode
   @override
   void writeValues(bool exportOnlyChanged, bool ignoreNulls) {
     writeValue('name', name);
-    writeValue('display_name', displayName);
+    writeValue('displayName', displayName);
     writeValue('email', email);
     writeValue('birthData', birthData);
     writeValue('gender', gender);

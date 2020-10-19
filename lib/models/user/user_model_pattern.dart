@@ -13,11 +13,11 @@ abstract class UserModelPattern<EntityModel extends EntityModelPattern, Permissi
   UserModelPattern.fromJson(json) : super.fromJson(json);
 
   @override
-  void updateValues(Map<String, dynamic> values) {
-    super.updateValues(values);
+  void readValues() {
+    super.readValues();
     entity = readValue<EntityModel>('entity', convertion: (value) => createEntityModel(value));
     message = readValue<String>('message');
-    permissions = readValue<List<PermissionModel>>('permissions', convertion: (permissions) => permissions.forEach((permission) => createPermissionModel(permission)).toList());
+    permissions = readListValue<PermissionModel>('permissions', convertion: (permission) => createPermissionModel(permission));
   }
 
   @override
